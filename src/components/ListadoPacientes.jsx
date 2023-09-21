@@ -2,8 +2,10 @@
 
 const ListadoPacientes = () => {
   return (
-    <div>
-      <h2>ListadoPacientes</h2>
+    <div className="bg-slate-500 w-1/2 lg:w-3/5">
+      <h2 className="font-black text-3xl text-center">ListadoPacientes</h2>
+
+     
     </div>
   )
 }
