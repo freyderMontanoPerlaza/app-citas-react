@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const Formulario = () => {
+const Formulario = ({ pacientes, setPacientes }) => {
 
     //mi primeros states el orden es importante
     //para evitar mesclar las variables
@@ -11,11 +11,44 @@ const Formulario = () => {
     const [sintoma, setSintoma] = useState('');
 
 
+    const [error, setError] = useState(false);
 
 
     const handleSubmit = (e) => {
 
         e.preventDefault()
+        //validacion formulario
+        if ([nombre, propietario, email, fecha, sintoma].includes('')) {
+            console.log('Hay al menos un campo vacio')
+            setError(true);
+            return
+        }
+
+        //estado del  error regresarlo a falso
+        setError(false);
+
+        //despues de validar paso a captura mi informacion
+        //y para eso declaro un Objecto paciente
+        const objectoPaciente = {
+            nombre,
+            propietario,
+            email,
+            fecha,
+            sintoma
+        }
+
+        //siempre se toma una copia de lo que ya hay para no reinscribir mi arreglo para agregar el nuevo objecto al final
+        //Tener una coleccion de todos los pacientes
+        //utilizar metodos inmutable para mis listas
+        //el arreglo  no sea modificada por algun metodo 
+        setPacientes([...pacientes, objectoPaciente]);
+
+        //reiniciar formulario
+        setNombre('');
+        setPropietario('');
+        setEmail('');
+        setFecha('');
+        setSintoma('');
 
     }
 
@@ -39,12 +72,22 @@ const Formulario = () => {
 
             <form
                 onSubmit={handleSubmit}//funcion 
-
                 className='bg-white shadow-md rounded-lg py-10 px-5 mt-4'>
+
+                {error && (
+                    <div className='bg-red-800 p-3 mb-3 rounded-md text-white text-center uppercase font-semibold'>
+                        <p>Todos los campos son Obligatorios</p>
+                    </div>
+                )}
+
+
+
+
+
                 <div className='mb-5'>
                     <label htmlFor="mascota"
                         className='block text-gray-700 uppercase font-bold'>
-                        Nombre  Mascota 
+                        Nombre  Mascota
                     </label>
 
 

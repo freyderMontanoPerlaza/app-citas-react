@@ -1,3 +1,6 @@
+
+import { useState } from 'react'
+
 import Formulario from "./components/Formulario"
 import Header from "./components/Header"
 import ListadoPacientes from "./components/ListadoPacientes"
@@ -5,6 +8,10 @@ import ListadoPacientes from "./components/ListadoPacientes"
 
 function App() {
 
+
+  //pasar al formulario arreglo vacio del formulario setPacientes 
+  //Para rellenar mi arreglo
+  const [pacientes, setPacientes] = useState([]);
 
 
 
@@ -14,8 +21,12 @@ function App() {
 
     <div className="container  mx-auto mt-20">
       <Header />
+
       <div className="md:flex  mt-12">
-        <Formulario />
+        <Formulario
+          pacientes={pacientes}
+          setPacientes={setPacientes}
+        />
         <ListadoPacientes />
       </div>
     </div>
