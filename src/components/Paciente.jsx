@@ -1,8 +1,17 @@
 
-const Paciente = ({ paciente, setPaciente }) => {
+const Paciente = ({ paciente, setPaciente, eliminarPaciente }) => {
 
     //destructurar mis props para usar las variables directamente
-    const { nombre, propietario, email, fecha, sintoma } = paciente
+    const { nombre, propietario, email, fecha, sintoma, id } = paciente;
+
+
+    const handleEliminar = () => {
+        const respuesta = confirm('Deseas eliminar este paciente?');
+
+        if(respuesta){
+            eliminarPaciente(id);
+        }
+    }
 
 
     return (
@@ -47,8 +56,8 @@ const Paciente = ({ paciente, setPaciente }) => {
 
                     <button
                         type="button"
-
-                        className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-10 rounded-lg">
+                        className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-10 rounded-lg"
+                        onClick={handleEliminar}>
                         Eliminar
                     </button>
                 </div>

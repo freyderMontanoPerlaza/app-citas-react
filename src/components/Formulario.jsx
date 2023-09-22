@@ -3,7 +3,7 @@ import Error from './Error'
 
 
 
-const Formulario = ({ pacientes, setPacientes, paciente }) => {
+const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
 
     //mi primeros states el orden es importante
     //para evitar mesclar las variables
@@ -76,6 +76,9 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
             const pacientesActualizados = pacientes.map(pacienteState => pacienteState.id === paciente.id ? objectoPaciente : pacienteState)
 
             setPacientes(pacientesActualizados)
+            //regresarlo a un objecto
+            setPaciente({});
+        
     
         
         } else {
