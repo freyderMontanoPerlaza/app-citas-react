@@ -33,6 +33,18 @@ const Paciente = ({ paciente }) => {
                     Sintomas: {''}
                     <span className="font-normal normal-case">{sintoma}</span>
                 </p>
+
+                {/* botones  */}
+                <div className="flex  justify-between mt-10">
+                    <button class="bg-indigo-700 hover:bg-indigo-800 text-white font-bold py-2 px-10 rounded-lg">
+                        Editar
+                    </button>
+
+                    <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-10 rounded-lg">
+                        Eliminar
+                    </button>
+                </div>
+
             </div>
         </div>
     )
