@@ -65,15 +65,29 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
             propietario,
             email,
             fecha,
-            sintoma,
-            id: generarId()
+            sintoma
         }
 
-        //siempre se toma una copia de lo que ya hay para no reinscribir mi arreglo para agregar el nuevo objecto al final
-        //Tener una coleccion de todos los pacientes
-        //utilizar metodos inmutable para mis listas
-        //el arreglo  no sea modificada por algun metodo 
-        setPacientes([...pacientes, objectoPaciente]);
+
+        //vereficar editar el registro
+        if (paciente.id) {
+
+            objectoPaciente.id = paciente.id;
+            const pacientesActualizados = pacientes.map(pacienteState => pacienteState.id === paciente.id ? objectoPaciente : pacienteState)
+
+            setPacientes(pacientesActualizados)
+    
+        
+        } else {
+
+            objectoPaciente.id = generarId();
+            //siempre se toma una copia de lo que ya hay para no reinscribir mi arreglo para agregar el nuevo objecto al final
+            //Tener una coleccion de todos los pacientes
+            //utilizar metodos inmutable para mis listas
+            //el arreglo  no sea modificada por algun metodo 
+            setPacientes([...pacientes, objectoPaciente]);
+
+        }
 
         //reiniciar formulario
         setNombre('');
@@ -199,7 +213,8 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
                 <input type="submit"
                     className='bg-indigo-700 w-full p-3 rounded-md
                                 text-white uppercase font-bold
-                                hover:bg-indigo-800 cursor-pointer transition-all'  value="Agregar Pacientes" />
+                                hover:bg-indigo-800 cursor-pointer transition-all'
+                    value={paciente.id ? ' Editar  Paciente' : 'Agregar Paciente'} />
 
 
             </form>
