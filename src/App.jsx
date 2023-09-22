@@ -23,11 +23,21 @@ function App() {
       <Header />
 
       <div className="md:flex  mt-12">
+
         <Formulario
           pacientes={pacientes}
           setPacientes={setPacientes}
         />
-        <ListadoPacientes />
+
+
+        {/*despues de psarle el arreglo pacientes a mi formulario y capturar su informacion*/}
+        {/* paso a mi lista de pacientes y la imprimo alli mis valores obtenidos por medio de los props */}
+        <ListadoPacientes
+          pacientes = {pacientes}
+        />
+
+
+
       </div>
     </div>
 
@@ -35,3 +45,5 @@ function App() {
 }
 
 export default App
+
+

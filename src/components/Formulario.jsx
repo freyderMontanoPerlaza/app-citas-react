@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import Error from './Error'
+
+
 
 const Formulario = ({ pacientes, setPacientes }) => {
 
@@ -14,8 +17,19 @@ const Formulario = ({ pacientes, setPacientes }) => {
     const [error, setError] = useState(false);
 
 
-    const handleSubmit = (e) => {
+    //generar Id para mi objecto paciente
+    const generarId =()=>{
+        const ramdon = Math.random().toString(36).substring(0, 3);
+        const fecha = Date.now().toString(36)
 
+        return ramdon + fecha
+    }
+
+
+
+
+
+    const handleSubmit = (e) => {
         e.preventDefault()
         //validacion formulario
         if ([nombre, propietario, email, fecha, sintoma].includes('')) {
@@ -34,7 +48,8 @@ const Formulario = ({ pacientes, setPacientes }) => {
             propietario,
             email,
             fecha,
-            sintoma
+            sintoma,
+            id:generarId()
         }
 
         //siempre se toma una copia de lo que ya hay para no reinscribir mi arreglo para agregar el nuevo objecto al final
@@ -74,11 +89,7 @@ const Formulario = ({ pacientes, setPacientes }) => {
                 onSubmit={handleSubmit}//funcion 
                 className='bg-white shadow-md rounded-lg py-10 px-5 mt-4'>
 
-                {error && (
-                    <div className='bg-red-800 p-3 mb-3 rounded-md text-white text-center uppercase font-semibold'>
-                        <p>Todos los campos son Obligatorios</p>
-                    </div>
-                )}
+                {error &&  <Error><p>Todos los campos son Obligatorios</p></Error> } 
 
 
 
