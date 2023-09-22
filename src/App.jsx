@@ -13,6 +13,10 @@ function App() {
   //Para rellenar mi arreglo
   const [pacientes, setPacientes] = useState([]);
 
+  //crear estado para eliminar o editar mis pacientes
+  // su valor inicial  va a ser un  objecto vacio
+  const [paciente, setPaciente] = useState({});
+
 
 
 
@@ -27,6 +31,7 @@ function App() {
         <Formulario
           pacientes={pacientes}
           setPacientes={setPacientes}
+          paciente = {paciente}
         />
 
 
@@ -34,8 +39,9 @@ function App() {
         {/* paso a mi lista de pacientes y la imprimo alli mis valores obtenidos por medio de los props */}
         <ListadoPacientes
           pacientes = {pacientes}
+          //para llegar a paciente tengo que pasarlo por nivel primero listado,depus paciente
+          setPaciente = {setPaciente}
         />
-
 
 
       </div>

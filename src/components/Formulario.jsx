@@ -3,7 +3,7 @@ import Error from './Error'
 
 
 
-const Formulario = ({ pacientes, setPacientes }) => {
+const Formulario = ({ pacientes, setPacientes, paciente }) => {
 
     //mi primeros states el orden es importante
     //para evitar mesclar las variables
@@ -13,19 +13,36 @@ const Formulario = ({ pacientes, setPacientes }) => {
     const [fecha, setFecha] = useState('');
     const [sintoma, setSintoma] = useState('');
 
-
     const [error, setError] = useState(false);
 
 
+
+    //useEffect escuchando por los cmbios que pasa en pacientes
+    useEffect(() => {
+        //comprobar si un objecto esta  vacio o no
+        if (Object.keys(paciente).length > 0) {
+            //por obligacion tiene que llevar el objecto para actualizar
+            setNombre(paciente.nombre);
+            setPropietario(paciente.propietario);
+            setEmail(paciente.email);
+            setFecha(paciente.fecha);
+            setSintoma(paciente.sintoma);
+        }
+
+    }, [paciente]);
+
+
+
+
+
+
     //generar Id para mi objecto paciente
-    const generarId =()=>{
+    const generarId = () => {
         const ramdon = Math.random().toString(36).substring(0, 3);
         const fecha = Date.now().toString(36)
 
         return ramdon + fecha
     }
-
-
 
 
 
@@ -49,7 +66,7 @@ const Formulario = ({ pacientes, setPacientes }) => {
             email,
             fecha,
             sintoma,
-            id:generarId()
+            id: generarId()
         }
 
         //siempre se toma una copia de lo que ya hay para no reinscribir mi arreglo para agregar el nuevo objecto al final
@@ -89,7 +106,7 @@ const Formulario = ({ pacientes, setPacientes }) => {
                 onSubmit={handleSubmit}//funcion 
                 className='bg-white shadow-md rounded-lg py-10 px-5 mt-4'>
 
-                {error &&  <Error><p>Todos los campos son Obligatorios</p></Error> } 
+                {error && <Error><p>Todos los campos son Obligatorios</p></Error>}
 
 
 

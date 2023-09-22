@@ -1,5 +1,5 @@
 
-const Paciente = ({ paciente }) => {
+const Paciente = ({ paciente, setPaciente }) => {
 
     //destructurar mis props para usar las variables directamente
     const { nombre, propietario, email, fecha, sintoma } = paciente
@@ -36,11 +36,19 @@ const Paciente = ({ paciente }) => {
 
                 {/* botones  */}
                 <div className="flex  justify-between mt-10">
-                    <button class="bg-indigo-700 hover:bg-indigo-800 text-white font-bold py-2 px-10 rounded-lg">
+
+                    <button
+                        type="button"
+                        className="bg-indigo-700 hover:bg-indigo-800 text-white font-bold py-2 px-10 rounded-lg"
+                        onClick={() => setPaciente(paciente)}
+                    >
                         Editar
                     </button>
 
-                    <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-10 rounded-lg">
+                    <button
+                        type="button"
+
+                        className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-10 rounded-lg">
                         Eliminar
                     </button>
                 </div>
